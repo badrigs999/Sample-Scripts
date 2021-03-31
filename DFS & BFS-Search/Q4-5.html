@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4,5 BBF Technical Test</title>
+</head>
+
+<body>
+    <label for="traversal_method">Traversal Method</label>
+    <select name="traversal_method" id="traversal_method" onchange="wipe()">
+        <option value="dfs" selected>Depth First</option>
+        <option value="bfs">Breadth First</option>
+    </select>
+    <button id="btn_go" onclick="traverse_and_show()">Go</button>
+    <div id="tree">
+    </div>
+</body>
+
+<script src="scripts/utils.js"></script>
+
+<script type="text/javascript">
+    // an asyn function to load the json data
+    async function getData() {
+        const response = await fetch("./data.json");
+        const data = await response.json();
+        return data;
+    }
+    // delete the tree
+    function wipe() {
+        document.getElementById("tree").innerHTML = "";
+    }
+    /**
+     * handle the btn click, fetch the data and run 
+     * either depth or breadth first traversal based on what 
+     * the user selected
+    */
+    function traverse_and_show() {
+        // clear the tree
+        document.getElementById("tree").innerHTML = "";
+        const select_el = document.getElementById("traversal_method");
+        getData()
+            .then(data => {
+                // run the traversal and update the dom
+                if (select_el.value === "dfs") {
+                    dfs({name: "..", children: data});
+                } else if (select_el.value === "bfs") {
+                    bfs({name: "..", children: data});
+                }
+            });
+    }
+    /** Load the default on window load */
+    (function(){ traverse_and_show(); })();
+</script>
+</html>
