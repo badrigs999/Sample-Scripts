@@ -1,5 +1,16 @@
 import string
 import sys
+
+# Method 1
+char_list = string.ascii_lowercase[:5][::-1]
+char_len = (len(char_list)*2-1)*2-1
+for i in range(-4, 4):
+    i = 4-i if i > -1 else i
+    print ("-".join(char_list[:i]+char_list[:i][::-1][1:]).center(char_len, '-'))
+
+    
+    
+# Method 2
 def print_rangoli(s):
 
     alpha = string.ascii_lowercase
