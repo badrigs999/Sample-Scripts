@@ -29,7 +29,7 @@ def print_rangoli(s):
             r[s - 1 + j] = alpha[j + i]
         print("-".join(r))
 print_rangoli(5)
-
+ 
 """
 --------e--------
 ------e-d-e------
