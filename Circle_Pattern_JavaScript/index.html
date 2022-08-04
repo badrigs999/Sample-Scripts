@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 Pattern Program</title>
+</head>
+
+<body>
+    <div id="tree">
+    </div>
+</body>
+
+<script src="scripts/utils.js"></script>
+
+<script type="text/javascript">
+    
+    function print_pattern() {
+        document.getElementById("tree").innerHTML = drawCircle();
+    }
+    /** Load the default on window load */
+    (function(){ print_pattern(); })();
+</script>
+</html>
