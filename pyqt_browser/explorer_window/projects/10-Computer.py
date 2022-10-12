@@ -78,6 +78,7 @@ elif platform.system() == 'Darwin':#Hide yucky system files
     
     RootDirectory['ignore'].extend(['dev','cores','bin','net','private','Keyboard','Network'])
     Project['subdirectories'] = [{'path':'','properties':RootDirectory}]
-                           
+
+# print ("Project:", Project)
 if __name__ == '__main__':
     print ("Project:", Project)
