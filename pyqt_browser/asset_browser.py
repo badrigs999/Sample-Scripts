@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import os, sys
-from PyQt4 import QtCore, QtGui, Qt
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.Qt import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
+from qtpy.QtWidgets import *
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(dir_path, "qt"))
@@ -40,7 +39,7 @@ class Custom_Browser_Tab_Widget(QWidget, Ui_botBrowserTabWidget_2):
         self.project_browser = Project_Browser_Widget()
         # print (self.project_browser, type(self.project_browser))
         self.gridLayout_4.addWidget(self.project_browser, 0, 1, 1, 1)
-    
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     
@@ -53,5 +52,6 @@ if __name__ == '__main__':
     main_widget.setWindowTitle("Custom Browser")
     
     main_widget.show()
-    main_widget.raise_()
+    # main_widget.raise_()
     sys.exit(app.exec_())
+

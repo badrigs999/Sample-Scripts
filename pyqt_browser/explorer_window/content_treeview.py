@@ -18,9 +18,9 @@
 import sys
 import os
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.Qt import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
+from qtpy.QtWidgets import *
 
 import traceback
 import content_finder
@@ -575,7 +575,10 @@ class Content_Notification_Bar_Widget(QWidget):
         layout.addWidget(self.progress_bar)
         layout.addWidget(self.message,Qt.AlignLeft)
         
-        layout.setMargin(0)
+        try:
+            layout.setMargin(0)
+        except:
+            layout.setContentsMargins(0, 0, 0, 0)
         #layout.setAlignment()
         self.setLayout(layout)
         
@@ -781,7 +784,10 @@ class Content_Treeview_Widget(QWidget):
         #self.notification_bar.hide()
         
         layout = QVBoxLayout()
-        layout.setMargin(0)
+        try:
+            layout.setMargin(0)
+        except:
+            layout.setContentsMargins(0, 0, 0, 0)
         
         self.preview = Preview_Widget()
         self.viewPreviewSplitter = QSplitter(Qt.Vertical)
@@ -796,19 +802,18 @@ class Content_Treeview_Widget(QWidget):
         layout.addWidget(self.viewPreviewSplitter)
         self.viewPreviewSplitter.splitterMoved.connect(self.splitter_move_action)
 
-        #layout.addWidget(self.view)
-        #layout.addWidget(self.preview)
-        #layout.addWidget(self.notification_bar)
-        #layout.setAlignment(Qt.AlignLeft)
-        
-        print (parent)
+        # layout.addWidget(self.view)
+        # layout.addWidget(self.preview)
+        # layout.addWidget(self.notification_bar)
+        # layout.setAlignment(Qt.AlignLeft)
+
         self.setLayout(layout)
         self.preview.set_size()
-        #self.information_finder.start()
+        # self.information_finder.start()
         self.clear()
         
         self.setup_context_menu()
-        #self.update()
+        self.update()
 
     def splitter_move_action(self, pos, index):
         

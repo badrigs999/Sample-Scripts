@@ -18,9 +18,9 @@
 import sys
 import os
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.Qt import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
+from qtpy.QtWidgets import *
 
 import project_search
 
@@ -916,11 +916,17 @@ class Project_Navigator_Widget(QWidget):
         self.connect(self.path, SIGNAL("returnPressed ()"),self._set_path)
 
         vertical_layout = QVBoxLayout()
-        vertical_layout.setMargin(0)
+        try:
+            vertical_layout.setMargin(0)
+        except:
+            vertical_layout.setContentsMargins(0, 0, 0, 0)
 
 
         h1_layout = QHBoxLayout()
-        h1_layout.setMargin(5)
+        try:
+            h1_layout.setMargin(5)
+        except:
+            h1_layout.setContentsMargins(5, 5, 5, 5)
         
         #h1_layout.setSpacing(0)
         h1_layout.addWidget(self.homeButton)
@@ -941,7 +947,10 @@ class Project_Navigator_Widget(QWidget):
         #h1_layout.setStretch(0,0)
 
         h2_layout = QHBoxLayout()
-        h2_layout.setMargin(0)
+        try:
+            h2_layout.setMargin(0)
+        except:
+            h2_layout.setContentsMargins(0, 0, 0, 0)
 
         spacer_item = QSpacerItem(160, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
         spacer1_item = QSpacerItem(160, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -1097,7 +1106,10 @@ class Project_Selector(QWidget):
         layout.addLayout(topLayout)
         layout.addLayout(self.viewLayout)
         
-        layout.setMargin(0)
+        try:
+            layout.setMargin(0)
+        except:
+            layout.setContentsMargins(0, 0, 0, 0)
         
         self.setLayout(layout)
         

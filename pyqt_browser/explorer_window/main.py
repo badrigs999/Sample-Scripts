@@ -19,9 +19,9 @@
 import sys
 import os
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.Qt import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
+from qtpy.QtWidgets import *
 
 import traceback
 
@@ -41,39 +41,39 @@ class Project_Browser_Widget(QWidget):
         
         self.project_selector = Project_Selector_Widget()
         
-        self.content_treeview = Content_Treeview_Widget()
+        self.content_treeview = Content_Treeview_Widget(self)
         
         self.content_manger = Content_Finder_Manager()
         
 
-        self.connect(self.project_selector, SIGNAL("item_selected"),self.content_manger.set_context)
-        self.connect(self.project_selector, SIGNAL("clear"),self.content_treeview.clear)
-        self.connect(self.content_manger, SIGNAL("Footage_load_finished"),self.content_treeview.load_finished)
-        self.connect(self.content_manger, SIGNAL("Footage_load_started"),self.content_treeview.load_started)
-        self.connect(self.content_manger, SIGNAL("Footage_load_stoped"),self.content_treeview.load_finished)
+        # self.connect(self.project_selector, SIGNAL("item_selected"),self.content_manger.set_context)
+        # self.connect(self.project_selector, SIGNAL("clear"),self.content_treeview.clear)
+        # self.connect(self.content_manger, SIGNAL("Footage_load_finished"),self.content_treeview.load_finished)
+        # self.connect(self.content_manger, SIGNAL("Footage_load_started"),self.content_treeview.load_started)
+        # self.connect(self.content_manger, SIGNAL("Footage_load_stoped"),self.content_treeview.load_finished)
         
-        self.connect(self.content_manger,SIGNAL("work_progress"),self.content_treeview.set_progress)
-        self.connect(self.content_manger,SIGNAL("work_message"),self.content_treeview.set_message)
+        # self.connect(self.content_manger,SIGNAL("work_progress"),self.content_treeview.set_progress)
+        # self.connect(self.content_manger,SIGNAL("work_message"),self.content_treeview.set_message)
         
-        self.connect(self.content_treeview,SIGNAL("context_menu_action"),self.context_menu_action)
+        # self.connect(self.content_treeview,SIGNAL("context_menu_action"),self.context_menu_action)
         
-        splitter = QSplitter(Qt.Vertical)
-        splitter.addWidget(self.project_selector)
-        splitter.addWidget(self.content_treeview)
+        # splitter = QSplitter(Qt.Vertical)
+        # splitter.addWidget(self.project_selector)
+        # splitter.addWidget(self.content_treeview)
         
-        splitter.setCollapsible(0,False)
+        # splitter.setCollapsible(0,False)
         
-        splitter.setStretchFactor(1,1)
-        layout = QVBoxLayout()
-        layout.addWidget(splitter)
-        #layout.addWidget(self.project_selector)
+        # splitter.setStretchFactor(1,1)
+        # layout = QVBoxLayout()
+        # layout.addWidget(splitter)
+        # #layout.addWidget(self.project_selector)
         
-        # layout.addWidget(self.content_treeview)
-        self.setAcceptDrops(True)
-        self.setLayout(layout)
+        # # layout.addWidget(self.content_treeview)
+        # self.setAcceptDrops(True)
+        # self.setLayout(layout)
 
-        shortcut_path_selector = QShortcut(QKeySequence("Alt+d"), self)
-        shortcut_path_selector.activated.connect(self.select_path)
+        # shortcut_path_selector = QShortcut(QKeySequence("Alt+d"), self)
+        # shortcut_path_selector.activated.connect(self.select_path)
 
     def select_path(self):
         self.project_selector.navigation.path.selectAll()

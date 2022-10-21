@@ -24,7 +24,11 @@ from timeout_process import launch_process
 
 # sys.path.insert(0, r"\\botcentral\BotScripts\Software\staging\Bot_Browser\main_browser\site-packages")
 # sys.path.insert(0, r"C:\Python27amd64\Lib\site-packages")
-import winshell
+if sys.platform == "win32":
+    try:
+        import winshell
+    except:
+        pass
 
 def find_executable_path(name):
     """search system path and included packages (if available) for executable"""
